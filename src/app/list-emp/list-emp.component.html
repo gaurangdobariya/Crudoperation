@@ -1,0 +1,146 @@
+<div class="container" >  
+  <div class="jumbotron" style="background :'#00ff00'">
+  <h2> User Details</h2>  
+</div>
+<div class="container">  
+  <form [formGroup]="form">
+    <table class="table">  
+      <thead>   
+        <tr>  
+          <th>Id</th>  
+          <th>Employee Name</th>  
+          <th>Salary</th>  
+          <th>Age</th> 
+          <th>Action</th>  
+        </tr>  
+      </thead>  
+      <tbody> 
+          <!-- <form [formGroup]="form"  class="form-group"> -->
+        <tr *ngFor="let emp of employees; let i = index" [attr.data-index]="i">  
+
+             <td *ngIf="uSelected[i]==true">{{emp.id}}</td>  
+               <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+
+                <td  *ngIf="uSelected[i]==false" > 
+                
+                  <div class="form-group">
+                            <input 
+                              formControlName= "emp_id"
+                               id="emp_id"
+                               type="text"
+                               [value]="emp.id"
+                               class="form-control" 
+                               name="emp_id">
+                               <div *ngIf="form.get('emp_id').touched && form.get('emp_id').invalid" class="alert alert-danger">
+                                  <!-- <div *ngIf="form.get('emp_id').errors.required">Employee Id is Required!</div>
+                                  <div *ngIf="form.get('emp_id').errors.pattern">Employee Id should be Number</div> -->
+                                </div>
+                              <br>
+                 </div>
+                 </td> 
+
+                <td *ngIf="uSelected[i]==true">{{emp.employee_name}}</td>  
+               <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+
+                <td  *ngIf="uSelected[i]==false" > 
+                
+                  <div class="form-group">
+                            <input 
+                              formControlName= "emp_name"
+                               id="emp_name"
+                               type="text"
+                               [value]="emp.employee_name"
+                               class="form-control" 
+                               name="emp_name">
+                               <div *ngIf="form.get('emp_name').touched && form.get('emp_name').invalid" class="alert alert-danger">
+                                  <div *ngIf="form.get('emp_name').errors.required">Employee Name is Required!</div>
+                                  <div *ngIf="form.get('emp_name').errors.pattern">Employee Name should be Number</div>
+                                </div>
+                              <br>
+                 </div>
+                 </td> 
+
+                 <td *ngIf="uSelected[i]==true">{{emp.employee_salary}}</td>  
+               <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+
+                <td  *ngIf="uSelected[i]==false" > 
+                
+                  <div class="form-group">
+                            <input 
+                              formControlName= "emp_salary"
+                               id="emp_salary"
+                               type="text"
+                               [value]="emp.employee_salary"
+                               class="form-control" 
+                               name="emp_salary">
+                               <div *ngIf="form.get('emp_salary').touched && form.get('emp_salary').invalid" class="alert alert-danger">
+                                  <div *ngIf="form.get('emp_salary').errors.required">Employee Id is Required!</div>
+                                  <div *ngIf="form.get('emp_salary').errors.pattern">Employee Id should be Number</div>
+                                </div>
+                              <br>
+                 </div>
+                 </td>
+                 
+                 <td *ngIf="uSelected[i]==true">{{emp.employee_age}}</td>  
+               <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+
+                <td  *ngIf="uSelected[i]==false" > 
+                
+                  <div class="form-group">
+                            <input 
+                              formControlName= "emp_age"
+                               id="emp_age"
+                               type="text"
+                               [value]="emp.employee_age"
+                               class="form-control" 
+                               name="emp_age">
+                               <div *ngIf="form.get('emp_age').touched && form.get('emp_age').invalid" class="alert alert-danger">
+                                  <div *ngIf="form.get('emp_age').errors.required">Employee Id is Required!</div>
+                                  <div *ngIf="form.get('emp_age').errors.pattern">Employee Id should be Number</div>
+                                </div>
+                              <br>
+                 </div>
+                 </td> 
+                <!-- </form>  --> 
+
+                 <!-- <td *ngIf="uSelected[i]==true">{{emp.employee_name}}</td>  
+                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_name" [(ngModel)]="emp.employee_name" ></td> 
+            <td *ngIf="uSelected[i]==true">{{emp.employee_salary}}</td>  
+                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_salary" [(ngModel)]="emp.employee_salary" ></td> 
+            <td *ngIf="uSelected[i]==true">{{emp.employee_age}}</td>  
+                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_age" [(ngModel)]="emp.employee_age" ></td>  -->
+
+          <div>
+          <td> <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="uSelected[i]==false" type="button" (click)="dEmployee(i)" > DELETE </button> </td>
+          <td> <button [disabled]="(!form.valid) && uSelected[i]==false"   type="submit"  class="btn btn-primary" type="submit" (click)="onUpdate(i)"> UPDATE </button> </td>
+         </div>
+         
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you want to delete?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-danger" (click)="deleteEmployee()" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </tr>
+<!-- </form> -->
+      </tbody>  
+    </table> 
+  </form>
+    <button type="submit" style="float:right"  class="btn btn-primary" routerLink="/add-emp">ADD</button>
+  </div>  
+ 
+          <!-- <form [formGroup]="form"  class="form-group"> -->
