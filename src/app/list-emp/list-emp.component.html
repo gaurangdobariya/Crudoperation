@@ -30,11 +30,8 @@
                                type="text"
                                [value]="emp.id"
                                class="form-control" 
-                               name="emp_id">
-                               <div *ngIf="form.get('emp_id').touched && form.get('emp_id').invalid" class="alert alert-danger">
-                                  <!-- <div *ngIf="form.get('emp_id').errors.required">Employee Id is Required!</div>
-                                  <div *ngIf="form.get('emp_id').errors.pattern">Employee Id should be Number</div> -->
-                                </div>
+                               name="emp_id"
+                               [ngClass]="{'redTurn':form.get('emp_id').invalid }">
                               <br>
                  </div>
                  </td> 
@@ -51,11 +48,8 @@
                                type="text"
                                [value]="emp.employee_name"
                                class="form-control" 
-                               name="emp_name">
-                               <div *ngIf="form.get('emp_name').touched && form.get('emp_name').invalid" class="alert alert-danger">
-                                  <div *ngIf="form.get('emp_name').errors.required">Employee Name is Required!</div>
-                                  <div *ngIf="form.get('emp_name').errors.pattern">Employee Name should be Number</div>
-                                </div>
+                               name="emp_name"
+                               [ngClass]="{'redTurn':form.get('emp_name').invalid }">
                               <br>
                  </div>
                  </td> 
@@ -72,11 +66,8 @@
                                type="text"
                                [value]="emp.employee_salary"
                                class="form-control" 
-                               name="emp_salary">
-                               <div *ngIf="form.get('emp_salary').touched && form.get('emp_salary').invalid" class="alert alert-danger">
-                                  <div *ngIf="form.get('emp_salary').errors.required">Employee Id is Required!</div>
-                                  <div *ngIf="form.get('emp_salary').errors.pattern">Employee Id should be Number</div>
-                                </div>
+                               name="emp_salary"
+                               [ngClass]="{'redTurn':form.get('emp_salary').invalid }">
                               <br>
                  </div>
                  </td>
@@ -93,11 +84,9 @@
                                type="text"
                                [value]="emp.employee_age"
                                class="form-control" 
-                               name="emp_age">
-                               <div *ngIf="form.get('emp_age').touched && form.get('emp_age').invalid" class="alert alert-danger">
-                                  <div *ngIf="form.get('emp_age').errors.required">Employee Id is Required!</div>
-                                  <div *ngIf="form.get('emp_age').errors.pattern">Employee Id should be Number</div>
-                                </div>
+                               name="emp_age"
+                               [ngClass]="{'redTurn':form.get('emp_age').invalid }">
+
                               <br>
                  </div>
                  </td> 
