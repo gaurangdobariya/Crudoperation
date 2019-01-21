@@ -18,7 +18,7 @@ export class AddEmpComponent implements OnInit {
     emp_id : new FormControl('',[Validators.required,Validators.pattern('[0-9]+')]),
     emp_name : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
     emp_salary : new FormControl('',[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
-    emp_age : new FormControl('',[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){1,3}')])
+    emp_age : new FormControl('',[Validators.required,Validators.pattern('[0-1]{1}[0-9]{0,2}')])
 
   });
  employee : Employee;
@@ -28,7 +28,7 @@ export class AddEmpComponent implements OnInit {
   ngOnInit() {
     
   }
-  add(){
+  onAdd=()=>{
     
     //this.empService.createUser(eid,ename,esalary,eage);
    // this.employee.id=parseInt(eid);
@@ -49,12 +49,12 @@ export class AddEmpComponent implements OnInit {
     {
       this.err="";
       console.log("value of the emp_id"+this.form.get('emp_id').value);
-      this.empService.createUser(this.form.get('emp_id').value,this.form.get('emp_name').value,this.form.get('emp_salary').value,this.form.get('emp_age').value);
+      this.empService.addEmployees(this.form.get('emp_id').value,this.form.get('emp_name').value,this.form.get('emp_salary').value,this.form.get('emp_age').value);
     // this.empService.createUser(eid,ename,esalary,eage);  
      } 
      else
       {
           this.err = "Not Valid Data !"
       }
-    }
+    };
   }
