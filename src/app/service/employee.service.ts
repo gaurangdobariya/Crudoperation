@@ -13,11 +13,19 @@ import{ DatePipe} from '@angular/common';
 export class EmployeeService {  
   employeeData : Employee[]= [
     {"u_id": 1111111111111 ,"id":1, "employee_name":"yash", "employee_salary":50000, "employee_age":12},
-    {"u_id": 2222222222222 ,"id":2,"employee_name":"john", "employee_salary":5000, "employee_age":15},
-    
-    {"u_id": 3333333333333 ,"id":3,"employee_name":"jenny","employee_salary":5000,"employee_age":23}];
+    {"u_id": 2222222222222 ,"id":2,"employee_name":"john", "employee_salary":1400, "employee_age":15},
+    {"u_id": 2222222222223 ,"id":3,"employee_name":"raj", "employee_salary":6000, "employee_age":17},
+    {"u_id": 2222222222224 ,"id":4,"employee_name":"ketul", "employee_salary":7000, "employee_age":18},
+    {"u_id": 2222222222225 ,"id":5,"employee_name":"dhruvit", "employee_salary":8000, "employee_age":19},
+    {"u_id": 2222222222226 ,"id":6,"employee_name":"raj", "employee_salary":9000, "employee_age":20},
+    {"u_id": 2222222222227 ,"id":7,"employee_name":"piyush", "employee_salary":1000, "employee_age":28},
+    {"u_id": 2222222222228 ,"id":8,"employee_name":"rohan", "employee_salary":9000, "employee_age":24},
+    {"u_id": 2222222222229 ,"id":9,"employee_name":"darshan", "employee_salary":5000, "employee_age":25},
+    {"u_id": 2222222222210 ,"id":10,"employee_name":"nike", "employee_salary":5500, "employee_age":24},
+
+    {"u_id": 3333333333333 ,"id":11,"employee_name":"jenny","employee_salary":5000,"employee_age":20}];
     empSelected : number;
-    baseUrl : string = "src/assets/temp.json";
+    baseUrl : string = "http://localhost:3000/Employees";
   constructor(private http: HttpClient,private router: Router) { }  
   getEmployees():Observable<Employee []> {  
     //return this.employeeData;          ----------->
