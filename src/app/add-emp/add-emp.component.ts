@@ -16,7 +16,7 @@ export class AddEmpComponent implements OnInit {
 
   form = new FormGroup({
     emp_id : new FormControl('',[Validators.required,Validators.pattern('[0-9]+')]),
-    emp_name : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
+    emp_name : new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z]{1}[a-zA-Z ]{0,18}[a-zA-Z]{1}$')]),
     emp_salary : new FormControl('',[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
     emp_age : new FormControl('',[Validators.required,Validators.pattern('[0-1]{1}[0-9]{0,2}')])
 

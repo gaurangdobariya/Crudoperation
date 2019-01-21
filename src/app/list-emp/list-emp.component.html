@@ -7,11 +7,14 @@
       <nav class="navbar">
           <button type="submit" class="btn btn-primary" routerLink="/add-emp">ADD</button>
 
-          <input class="form-control w-25 h-50 d-flex justify-content-end" type="search" placeholder="Search..." name="search" [(ngModel)]="filter">      
+          <input class="form-control w-25 h-50 d-flex justify-content-end" type="search" placeholder="search..." name="search" [(ngModel)]="filter"> 
+          <!-- <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span> -->
+           
+         
  
         </nav>
     </div>
-    <pagination-controls class="" (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls class="justify-content-center" (pageChange)="p = $event"></pagination-controls>
 
   <form [formGroup]="form">
     <table class="table">  
@@ -19,16 +22,23 @@
       <thead>   
         <tr>  
           <th (click)="sort('id')">Id
-              <span class="glyphicon glyphicon-sort" *ngIf="key =='id'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              <!-- <i class="fa fa-sort"></i> -->
+              <i class="fa fa-sort-down" *ngIf="key =='id'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
           </th>  
           <th (click)="sort('employee_name')">Employee Name
-              <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              <i class="fa fa-sort-down" *ngIf="key =='employee_name'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
+ 
+            <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
           </th>  
           <th (click)="sort('employee_salary')">Salary
-              <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_salary'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-          </th>  
+                <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_salary'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+                <i class="fa fa-sort-down" *ngIf="key =='employee_salary'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
+
+              </th>  
           <th (click)="sort('employee_age')">Age
-              <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              <i class="fa fa-sort-down" *ngIf="key =='employee_age'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
+
+              <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
           </th> 
           <th>&nbsp;Action</th>  
         </tr>  
@@ -39,10 +49,10 @@
           <!-- <form [formGroup]="form"  class="form-group"> -->
         <tr *ngFor="let emp of employees  | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index" [attr.data-index]="i">  
 
-             <td *ngIf="uSelected[i]==true">{{emp.id}}</td>  
+             <td *ngIf="kSelected!=emp.u_id">{{emp.id}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
-                <td  *ngIf="uSelected[i]==false" > 
+                <td  *ngIf="kSelected==emp.u_id" > 
                 
                   <div class="form-group">
                             <input 
@@ -57,10 +67,10 @@
                  </div>
                  </td> 
 
-                <td *ngIf="uSelected[i]==true">{{emp.employee_name}}</td>  
+                <td *ngIf="kSelected!=emp.u_id">{{emp.employee_name}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
-                <td  *ngIf="uSelected[i]==false" > 
+                <td  *ngIf="kSelected==emp.u_id" > 
                 
                   <div class="form-group">
                             <input 
@@ -75,10 +85,10 @@
                  </div>
                  </td> 
 
-                 <td *ngIf="uSelected[i]==true">{{emp.employee_salary}}</td>  
+                 <td *ngIf="kSelected!=emp.u_id">{{emp.employee_salary}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
-                <td  *ngIf="uSelected[i]==false" > 
+                <td  *ngIf="kSelected==emp.u_id" > 
                 
                   <div class="form-group">
                             <input 
@@ -93,10 +103,10 @@
                  </div>
                  </td>
                  
-                 <td *ngIf="uSelected[i]==true">{{emp.employee_age}}</td>  
+                 <td *ngIf="kSelected!=emp.u_id">{{emp.employee_age}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
-                <td  *ngIf="uSelected[i]==false" > 
+                <td  *ngIf="kSelected==emp.u_id" > 
                 
                   <div class="form-group">
                             <input 
@@ -121,8 +131,8 @@
                  <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_age" [(ngModel)]="emp.employee_age" ></td>  -->
 
           <div>
-          <td> <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="uSelected[i]==false" type="button" (click)="onDelete(emp.u_id)" > DELETE </button> </td>
-          <td> <button [disabled]="(!form.valid) && uSelected[i]==false"   type="submit"  class="btn btn-primary" type="submit" (click)="onUpdate(i,emp.u_id)"> UPDATE </button> </td>
+          <td> <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="kSelected==emp.u_id" type="button" (click)="onDelete(emp.u_id)" > DELETE </button> </td>
+          <td> <button [disabled]="(!form.valid) && kSelected==emp.u_id"   type="submit"  class="btn btn-primary" type="submit" (click)="onUpdate(i,emp.u_id)"> UPDATE </button> </td>
          </div>
          
 

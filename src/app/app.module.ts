@@ -11,7 +11,7 @@ import { AddEmpComponent } from './add-emp/add-emp.component';
 import { EmployeeService } from './service/employee.service';  
 import { from } from 'rxjs';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { UpdateEmpComponent } from './update-emp/update-emp.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
@@ -24,9 +24,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
     AddEmpComponent, UpdateEmpComponent  
   ],  
   imports: [  
-    BrowserModule,  // deleteEmployees(id: number) {  
-      //   return this.http.delete<Employee[]>(this.baseUrl + id);  
-      // }  
+    BrowserModule,  
+    AngularFontAwesomeModule,
     HttpClientModule,  
     AppRoutingModule,  
     ReactiveFormsModule,

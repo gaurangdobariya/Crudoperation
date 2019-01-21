@@ -6,6 +6,7 @@ import {Observable,of} from 'rxjs';
 import{ DatePipe} from '@angular/common';
 
 
+
 @Injectable({  
   providedIn: 'root'  
 })  
@@ -16,11 +17,12 @@ export class EmployeeService {
     
     {"u_id": 3333333333333 ,"id":3,"employee_name":"jenny","employee_salary":5000,"employee_age":23}];
     empSelected : number;
+    baseUrl : string = "src/assets/temp.json";
   constructor(private http: HttpClient,private router: Router) { }  
   getEmployees():Observable<Employee []> {  
     //return this.employeeData;          ----------->
     return of (this.employeeData);
-   // return this.http.get<Employee[]>(this.baseUrl);  
+  //  return this.http.get<Employee[]>(this.baseUrl);  
   }  
   deleteEmployees=(index: number) => {  
     this.employeeData.splice(index,1);  

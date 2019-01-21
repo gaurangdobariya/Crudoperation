@@ -25,6 +25,7 @@ export class ListEmpComponent implements OnInit {
   key: string = 'id'; //set default
   reverse: boolean = false;//false
   p: number=3;
+  kSelected : number;
 
   form = new FormGroup({
       emp_id : new FormControl(this.tEmpid,[Validators.required,Validators.pattern('[0-9]+')]),
@@ -42,6 +43,7 @@ export class ListEmpComponent implements OnInit {
    for(let i=0;i<this.employees.length;i++){
           this.uSelected[i]=true;
         }
+
      }
      
   sort=(key)=>{
@@ -51,15 +53,15 @@ export class ListEmpComponent implements OnInit {
 
   onUpdate=(index: number,u_id :number)=>{
       let eIndex=this.findEmployeeIndex(u_id);
-      if(this.uSelected[index]==false){
-        this.uSelected[index]=true;
+      if(this.kSelected==u_id){
         this.empService.empSelected=eIndex;
         this.empService.updateEmployees(this.form.get("emp_id").value,this.form.get("emp_name").value,this.form.get("emp_salary").value,this.form.get("emp_age").value);
+        this.kSelected=null;
       }else{
-        for(let i=0;i<this.employees.length;i++){
-          this.uSelected[i]=true;
-        }
-        this.uSelected[index]=false;
+
+
+        this.kSelected=u_id;
+        
          this.form = new FormGroup({
           emp_id : new FormControl(this.employees[eIndex].id,[Validators.required,Validators.pattern('[0-9]+')]),
           emp_name : new FormControl(this.employees[eIndex].employee_name,[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
