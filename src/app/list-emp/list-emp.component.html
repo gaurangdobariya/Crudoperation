@@ -5,7 +5,7 @@
 <div class="container">  
   <div>
       <nav class="navbar">
-          <button type="submit" class="btn btn-primary" routerLink="/add-emp">ADD</button>
+          <button type="submit" class="btn btn-primary" routerLink="/add-emp">ADD <i class="fa fa-plus-circle"></i></button>
 
           <input class="form-control w-25 h-50 d-flex justify-content-end" type="search" placeholder="search..." name="search" [(ngModel)]="filter"> 
           <!-- <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span> -->
@@ -40,7 +40,7 @@
 
               <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
           </th> 
-          <th>&nbsp;Action</th>  
+          <th>&nbsp;Actions</th>  
         </tr>  
       </thead>  
       <tbody> 
@@ -131,8 +131,9 @@
                  <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_age" [(ngModel)]="emp.employee_age" ></td>  -->
 
           <div>
-          <td> <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="kSelected==emp.u_id" type="button" (click)="onDelete(emp.u_id)" > DELETE </button> </td>
-          <td> <button [disabled]="(!form.valid) && kSelected==emp.u_id"   type="submit"  class="btn btn-primary" type="submit" (click)="onUpdate(i,emp.u_id)"> UPDATE </button> </td>
+              <td> <button [disabled]="(!form.valid) && kSelected==emp.u_id"   type="submit"  class="btn btn-secondary" type="submit" (click)="onUpdate(i,emp.u_id)"> <i class="fa fa-edit"></i></button> </td>
+
+          <td> <button  class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" [disabled]="kSelected==emp.u_id" type="button" (click)="onDelete(emp.u_id)"><i class="fa fa-trash"></i></button> </td>
          </div>
          
 
