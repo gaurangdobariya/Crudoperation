@@ -22,13 +22,13 @@ export class ListEmpComponent implements OnInit {
   employees: Employee[];  
   uSelected: boolean[]=[];
   index :number;
-  key: string = 'id'; //set default
+  key: string = 'employee_name'; //set default
   reverse: boolean = false;//false
   p: number=3;
   kSelected : number;
 
   form = new FormGroup({
-      emp_id : new FormControl(this.tEmpid,[Validators.required,Validators.pattern('[6789][0-9]{9}')]),
+      emp_phnumber : new FormControl(this.tEmpid,[Validators.required,Validators.pattern('[6789][0-9]{9}')]),
       emp_name : new FormControl(this.tEmpname,[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
       emp_salary : new FormControl(this.tEmpsalary,[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
       emp_age : new FormControl(this.tEmpage,[Validators.required,Validators.pattern('[0-1]{1}[0-9]{0,2}')])
@@ -55,7 +55,7 @@ export class ListEmpComponent implements OnInit {
       let eIndex=this.findEmployeeIndex(u_id);
       if(this.kSelected==u_id){
         this.empService.empSelected=eIndex;
-        this.empService.updateEmployees(this.form.get("emp_id").value,this.form.get("emp_name").value,this.form.get("emp_salary").value,this.form.get("emp_age").value);
+        this.empService.updateEmployees(this.form.get("emp_phnumber").value,this.form.get("emp_name").value,this.form.get("emp_salary").value,this.form.get("emp_age").value);
         this.kSelected=null;
       }else{
 
@@ -63,7 +63,7 @@ export class ListEmpComponent implements OnInit {
         this.kSelected=u_id;
         
          this.form = new FormGroup({
-          emp_id : new FormControl(this.employees[eIndex].id,[Validators.required,Validators.pattern('[0-9]+')]),
+          emp_phnumber : new FormControl(this.employees[eIndex].employee_phnumber,[Validators.required,Validators.pattern('[0-9]+')]),
           emp_name : new FormControl(this.employees[eIndex].employee_name,[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
           emp_salary : new FormControl(this.employees[eIndex].employee_salary,[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
           emp_age : new FormControl(this.employees[eIndex].employee_age,[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){1,3}')])});

@@ -12,18 +12,18 @@ import{ DatePipe} from '@angular/common';
 })  
 export class EmployeeService {  
   employeeData : Employee[]= [
-    {"u_id": 1111111111111 ,"id":9874563215, "employee_name":"yash", "employee_salary":50000, "employee_age":12},
-    {"u_id": 2222222222222 ,"id":8745632194,"employee_name":"john", "employee_salary":1400, "employee_age":15},
-    {"u_id": 2222222222223 ,"id":7456321965,"employee_name":"raj", "employee_salary":6000, "employee_age":17},
-    {"u_id": 2222222222224 ,"id":6549871237,"employee_name":"ketul", "employee_salary":7000, "employee_age":18},
-    {"u_id": 2222222222225 ,"id":6874521368,"employee_name":"dhruvit", "employee_salary":8000, "employee_age":19},
-    {"u_id": 2222222222226 ,"id":9874563211,"employee_name":"raj", "employee_salary":9000, "employee_age":20},
-    {"u_id": 2222222222227 ,"id":7544455445,"employee_name":"piyush", "employee_salary":1000, "employee_age":28},
-    {"u_id": 2222222222228 ,"id":8787878754,"employee_name":"rohan", "employee_salary":9000, "employee_age":24},
-    {"u_id": 2222222222229 ,"id":9781256989,"employee_name":"darshan", "employee_salary":5000, "employee_age":25},
-    {"u_id": 2222222222210 ,"id":8745545623,"employee_name":"nike", "employee_salary":5500, "employee_age":24},
+    {"u_id": 1111111111111 ,"employee_phnumber":9874563215, "employee_name":"yash", "employee_salary":50000, "employee_age":12},
+    {"u_id": 2222222222222 ,"employee_phnumber":8745632194,"employee_name":"john", "employee_salary":1400, "employee_age":15},
+    {"u_id": 2222222222223 ,"employee_phnumber":7456321965,"employee_name":"raj", "employee_salary":6000, "employee_age":17},
+    {"u_id": 2222222222224 ,"employee_phnumber":6549871237,"employee_name":"ketul", "employee_salary":7000, "employee_age":18},
+    {"u_id": 2222222222225 ,"employee_phnumber":6874521368,"employee_name":"dhruvit", "employee_salary":8000, "employee_age":19},
+    {"u_id": 2222222222226 ,"employee_phnumber":9874563211,"employee_name":"raj", "employee_salary":9000, "employee_age":20},
+    {"u_id": 2222222222227 ,"employee_phnumber":7544455445,"employee_name":"piyush", "employee_salary":1000, "employee_age":28},
+    {"u_id": 2222222222228 ,"employee_phnumber":8787878754,"employee_name":"rohan", "employee_salary":9000, "employee_age":24},
+    {"u_id": 2222222222229 ,"employee_phnumber":9781256989,"employee_name":"darshan", "employee_salary":5000, "employee_age":25},
+    {"u_id": 2222222222210 ,"employee_phnumber":8745545623,"employee_name":"nike", "employee_salary":5500, "employee_age":24},
 
-    {"u_id": 3333333333333 ,"id":7896541777,"employee_name":"jenny","employee_salary":5000,"employee_age":20}];
+    {"u_id": 3333333333333 ,"employee_phnumber":7896541777,"employee_name":"jenny","employee_salary":5000,"employee_age":20}];
     empSelected : number;
     baseUrl : string = "http://localhost:3000/Employees";
   constructor(private http: HttpClient,private router: Router) { }  
@@ -38,7 +38,7 @@ export class EmployeeService {
   addEmployees=(eid :string, ename : string ,esalary : string, eage:string)=> { 
     this.employeeData.push({
       u_id : Date.now(),
-      id: parseInt(eid),
+      employee_phnumber: parseInt(eid),
       employee_name : ename,
       employee_salary : parseInt(esalary),
       employee_age : parseInt(eage)
@@ -51,7 +51,7 @@ export class EmployeeService {
 //console.log(eid+"------"+ename);
 //console.log("id is innumber "+eid);
 this.employeeData[this.empSelected].u_id=Date.now();
-    this.employeeData[this.empSelected].id=eid;
+    this.employeeData[this.empSelected].employee_phnumber=eid;
     this.employeeData[this.empSelected].employee_name=ename;
     this.employeeData[this.empSelected].employee_salary=esalary;
     this.employeeData[this.empSelected].employee_age=eage;

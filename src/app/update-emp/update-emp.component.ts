@@ -24,7 +24,7 @@ export class UpdateEmpComponent implements OnInit {
     this.eId=1;
     console.log(this.eId);
 
-    this.eId=this.empService.employeeData[this.empService.empSelected].id;
+    this.eId=this.empService.employeeData[this.empService.empSelected].employee_phnumber;
     console.log(this.eId);
     this.eName=this.empService.employeeData[this.empService.empSelected].employee_name;
     this.eSalary=(this.empService.employeeData[this.empService.empSelected].employee_salary);

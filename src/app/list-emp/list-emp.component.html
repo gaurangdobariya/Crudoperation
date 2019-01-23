@@ -27,9 +27,9 @@
  
             <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
           </th>  
-          <th (click)="sort('id')">Phone no
+          <th (click)="sort('employee_phnumber')">Phone no
             <!-- <i class="fa fa-sort"></i> -->
-            <i class="fa fa-sort-down" *ngIf="key =='id'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
+            <i class="fa fa-sort-down" *ngIf="key =='employee_phnumber'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
         </th>  
           <th (click)="sort('employee_salary')">Salary
                 <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_salary'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
@@ -68,20 +68,20 @@
                               <br>
                  </div>
                  </td> 
-                 <td *ngIf="kSelected!=emp.u_id">{{emp.id}}</td>  
+                 <td *ngIf="kSelected!=emp.u_id">{{emp.employee_phnumber}}</td>  
                  <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
   
                   <td  *ngIf="kSelected==emp.u_id" > 
                   
                     <div class="form-group">
                               <input 
-                                formControlName="emp_id"
-                                 id="emp_id"
+                                formControlName="emp_phnumber"
+                                 id="emp_phnumber"
                                  type="text"
-                                 [value]="emp.id"
+                                 [value]="emp.employee_phnumber"
                                  class="form-control" 
-                                 name="emp_id"
-                                 [ngClass]="{'redTurn':form.get('emp_id').invalid }">
+                                 name="emp_phnumber"
+                                 [ngClass]="{'redTurn':form.get('emp_phnumber').invalid }">
                                 <br>
                    </div>
                    </td> 
