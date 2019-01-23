@@ -21,15 +21,16 @@
 
       <thead>   
         <tr>  
-          <th (click)="sort('id')">Id
-              <!-- <i class="fa fa-sort"></i> -->
-              <i class="fa fa-sort-down" *ngIf="key =='id'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
-          </th>  
+        
           <th (click)="sort('employee_name')">Employee Name
               <i class="fa fa-sort-down" *ngIf="key =='employee_name'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
  
             <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
           </th>  
+          <th (click)="sort('id')">Phone no
+            <!-- <i class="fa fa-sort"></i> -->
+            <i class="fa fa-sort-down" *ngIf="key =='id'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
+        </th>  
           <th (click)="sort('employee_salary')">Salary
                 <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_salary'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
                 <i class="fa fa-sort-down" *ngIf="key =='employee_salary'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
@@ -49,24 +50,7 @@
           <!-- <form [formGroup]="form"  class="form-group"> -->
         <tr *ngFor="let emp of employees  | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index" [attr.data-index]="i">  
 
-             <td *ngIf="kSelected!=emp.u_id">{{emp.id}}</td>  
-               <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
-
-                <td  *ngIf="kSelected==emp.u_id" > 
-                
-                  <div class="form-group">
-                            <input 
-                              formControlName="emp_id"
-                               id="emp_id"
-                               type="text"
-                               [value]="emp.id"
-                               class="form-control" 
-                               name="emp_id"
-                               [ngClass]="{'redTurn':form.get('emp_id').invalid }">
-                              <br>
-                 </div>
-                 </td> 
-
+           
                 <td *ngIf="kSelected!=emp.u_id">{{emp.employee_name}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
@@ -84,6 +68,24 @@
                               <br>
                  </div>
                  </td> 
+                 <td *ngIf="kSelected!=emp.u_id">{{emp.id}}</td>  
+                 <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+  
+                  <td  *ngIf="kSelected==emp.u_id" > 
+                  
+                    <div class="form-group">
+                              <input 
+                                formControlName="emp_id"
+                                 id="emp_id"
+                                 type="text"
+                                 [value]="emp.id"
+                                 class="form-control" 
+                                 name="emp_id"
+                                 [ngClass]="{'redTurn':form.get('emp_id').invalid }">
+                                <br>
+                   </div>
+                   </td> 
+  
 
                  <td *ngIf="kSelected!=emp.u_id">{{emp.employee_salary}}</td>  
                <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->

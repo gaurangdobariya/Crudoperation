@@ -28,7 +28,7 @@ export class ListEmpComponent implements OnInit {
   kSelected : number;
 
   form = new FormGroup({
-      emp_id : new FormControl(this.tEmpid,[Validators.required,Validators.pattern('[0-9]+')]),
+      emp_id : new FormControl(this.tEmpid,[Validators.required,Validators.pattern('[6789][0-9]{9}')]),
       emp_name : new FormControl(this.tEmpname,[Validators.required,Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
       emp_salary : new FormControl(this.tEmpsalary,[Validators.required,Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
       emp_age : new FormControl(this.tEmpage,[Validators.required,Validators.pattern('[0-1]{1}[0-9]{0,2}')])
