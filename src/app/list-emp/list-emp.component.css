@@ -4,7 +4,22 @@
 }
 thead>tr>th {
     cursor: pointer;
+
 }
 .has-search .form-control {
     padding-left: 2.375rem;
+}
+td{
+    max-width: 150px;
+}
+.fcs{
+    max-width: 150px;
+
+}
+input[type="text"] {
+    max-width: 150px;
+}
+.fclass{
+    background :none;
+    border: none;
 }

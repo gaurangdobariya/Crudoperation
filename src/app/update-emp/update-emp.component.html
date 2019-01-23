@@ -1,19 +1,19 @@
 <div>
   <h2>&nbsp;&nbsp;&nbsp;Update Detail &nbsp;&nbsp;&nbsp; </h2>
-<div class="container">
-Employee id:<br>
-<input type="text" name="emp_id" [value]="eId"  [(ngModel)]="eId" ><br>
-Employee name:<br>
-  <input type="text" name="emp_name" [value]="eName"  [(ngModel)]="eName"><br>
-  Employee salary:<br>
-  <input type="text" name="emp_salary" [value]="eSalary"  [(ngModel)]="eSalary"><br>
-  Employee age:<br>
-  <input type="text" name="emp_age" [value]="eAge"  [(ngModel)]="eAge"><br>
-  <br>
-<button type="submit" class="btn btn-primary" (click)="update(eId,eName,eSalary,eAge)">Update</button>
-&nbsp;&nbsp;&nbsp;
-<!-- <a routerLink="/list-emp">list Employee</a> -->
-<button type="submit" class="btn btn-primary" routerLink="/list-emp">LIST EMPLOYEE</button>
-<span>{{err}}</span></div>
+  <div class="container">
+    Employee id:<br>
+    <input type="text" name="emp_id" [value]="eId" [(ngModel)]="eId"><br>
+    Employee name:<br>
+    <input type="text" name="emp_name" [value]="eName" [(ngModel)]="eName"><br>
+    Employee salary:<br>
+    <input type="text" name="emp_salary" [value]="eSalary" [(ngModel)]="eSalary"><br>
+    Employee age:<br>
+    <input type="text" name="emp_age" [value]="eAge" [(ngModel)]="eAge"><br>
+    <br>
+    <button type="submit" class="btn btn-primary" (click)="update(eId,eName,eSalary,eAge)">Update</button>
+    &nbsp;&nbsp;&nbsp;
+    <!-- <a routerLink="/list-emp">list Employee</a> -->
+    <button type="submit" class="btn btn-primary" routerLink="/list-emp">LIST EMPLOYEE</button>
+    <span>{{err}}</span></div>
 
 </div>

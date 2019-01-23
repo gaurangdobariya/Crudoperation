@@ -1,100 +1,79 @@
-
 <!-- 
 <div>
     <h2>&nbsp;&nbsp;&nbsp;Add Detail &nbsp;&nbsp;&nbsp; </h2>
     <div class="container"> -->
-<div class="container" >  
+<div class="container">
   <div class="jumbotron h-50">
-    <h2> Add User</h2>  
-</div>
-<div class="container-fluid justify-content-center">
- <form [formGroup]="form">
-  
+    <h2> Add User</h2>
+  </div>
+  <div class="justify-content-center container">
+    <form [formGroup]="form">
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="emp_name">Employee Name:</label>
-       <div class="col-sm-10">
-            <input 
-              formControlName= "emp_name"
-               id="emp_name"
-               placeholder="Employee Name"
-               type="text" 
-               class="form-control w-50" 
-               name="emp_name">
-        <div *ngIf="form.get('emp_name').touched && form.get('emp_name').invalid" class="alert alert-danger w-50 h-20">
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="emp_name">Employee Name:</label>
+        <div class="col-sm-10">
+          <input formControlName="emp_name" id="emp_name" placeholder="Employee Name" type="text" class="form-control w-50"
+            name="emp_name">
+          <div *ngIf="form.get('emp_name').touched && form.get('emp_name').invalid" class="alert alert-danger w-50 h-20">
             <div *ngIf="form.get('emp_name').errors.required">Employee Name is Required!</div>
             <div *ngIf="form.get('emp_name').errors.pattern">Employee Name should between 2-20 character</div>
+          </div>
         </div>
+        <br>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="emp_phnumber">Employee Phone no:</label>
+        <div class="col-sm-10">
+
+          <input formControlName="emp_phnumber" id="emp_phnumber" type="text" class="form-control w-50" placeholder="Employee Phone no"
+            name="emp_phnumber">
+          <div *ngIf="form.get('emp_phnumber').touched && form.get('emp_phnumber').invalid" class="alert alert-danger w-50 h-20">
+            <div *ngIf="form.get('emp_phnumber').errors.required">Employee Phone no is Required!</div>
+            <div *ngIf="form.get('emp_phnumber').errors.pattern">Employee Phone no should be Number</div>
+          </div>
         </div>
-  <br>
-  </div>
+        <br>
+      </div>
 
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="emp_phnumber">Employee Phone no:</label>
-    <div class="col-sm-10">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="emp_salary">Employee Salary:</label>
+        <div class="col-sm-10">
 
-        <input 
-              formControlName= "emp_phnumber"
-               id="emp_phnumber"
-               type="text"
-               class="form-control w-50" 
-               placeholder="Employee Phone no"
-               name="emp_phnumber">
-               <div *ngIf="form.get('emp_phnumber').touched && form.get('emp_phnumber').invalid" class="alert alert-danger w-50 h-20">
-                  <div  *ngIf="form.get('emp_phnumber').errors.required" >Employee Phone no is Required!</div>
-                  <div  *ngIf="form.get('emp_phnumber').errors.pattern">Employee Phone no should be Number</div>
-              </div>
-     </div>
-     <br>
-  </div>
-
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="emp_salary">Employee Salary:</label>
-       <div class="col-sm-10">
-
-        <input 
-              formControlName= "emp_salary"
-               id="emp_salary"
-               placeholder="Employee Salary"
-               type="text" 
-               class="form-control w-50" 
-               name="emp_salary">
-               <div *ngIf="form.get('emp_salary').touched && form.get('emp_salary').invalid" class="alert alert-danger w-50 h-20">
-                  <div *ngIf="form.get('emp_salary').errors.required">Employee Salary is Required!</div>
-                  <div *ngIf="form.get('emp_salary').errors.pattern">Employee Salary should be number</div>
-              </div>
+          <input formControlName="emp_salary" id="emp_salary" placeholder="Employee Salary" type="text" class="form-control w-50"
+            name="emp_salary">
+          <div *ngIf="form.get('emp_salary').touched && form.get('emp_salary').invalid" class="alert alert-danger w-50 h-20">
+            <div *ngIf="form.get('emp_salary').errors.required">Employee Salary is Required!</div>
+            <div *ngIf="form.get('emp_salary').errors.pattern">Employee Salary should be number</div>
+          </div>
         </div>
-  <br>
-  </div>
-  
-  <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="emp_age">Employee Age:</label>
-       <div class="col-sm-10">
-         <input 
-              formControlName="emp_age"
-              placeholder="Employee Age"
-               id="emp_age"
-               type="text" 
-               class="form-control w-50" 
-               name="emp_age">
-               <div *ngIf="form.get('emp_age').touched && form.get('emp_age').invalid" class="alert alert-danger w-50 h-20">
-                  <div *ngIf="form.get('emp_age').errors.required">Employee Age is Required!</div>
-                  <div *ngIf="form.get('emp_age').errors.pattern">Employee Age should between 0-200</div>
-              </div>
+        <br>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="emp_email">Employee Email:</label>
+        <div class="col-sm-10">
+          <input formControlName="emp_email" placeholder="Employee Email" id="emp_email" type="text" class="form-control w-50"
+            name="emp_email">
+          <div *ngIf="form.get('emp_email').touched && form.get('emp_email').invalid" class="alert alert-danger w-50 h-20">
+            <div *ngIf="form.get('emp_email').errors.required">Employee Email is Required!</div>
+            <div *ngIf="form.get('emp_email').errors.pattern">Employee Email is invalid!</div>
+          </div>
         </div>
-  <br>
+        <br>
+      </div>
+      <div class="container col-sm-10">
+        <button [disabled]="!form.valid" type="submit" class="btn btn-primary" (click)="onAdd()">ADD</button>
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" routerLink="/list-emp">Cancel</button>
+      </div>
+      &nbsp;
+      <span>{{err}}</span>
+    </form>
   </div>
-  <div class="container col-sm-10">
-  <button [disabled]="!form.valid" type="submit" class="btn btn-primary" (click)="onAdd()">ADD</button> 
-   &nbsp;&nbsp;&nbsp;
-  <button type="button" class="btn btn-primary" routerLink="/list-emp">Cancel</button>
-  </div>
- &nbsp;
-  <span>{{err}}</span> 
-</form>
 </div>
-</div>
-  <!-- <span>{{err}}</span>
+<!-- <span>{{err}}</span>
         <button [disabled]="true" type="submit" class="btn btn-primary">ADD</button>  
 
    -->
