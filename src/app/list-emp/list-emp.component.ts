@@ -3,8 +3,8 @@ import { EmployeeService } from '../service/employee.service';
 import { Employee } from '../model/employee';
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators, FormGroupName } from '@angular/forms';
-import { DatePipe } from '@angular/common';
-import { from } from 'rxjs';
+
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 
 @Component({
@@ -27,24 +27,42 @@ export class ListEmpComponent implements OnInit {
   p: number = 3;
   kSelected: number;
   dSelected :string;
+  datePickerConfig: Partial<BsDatepickerConfig>;
+  tdateOfBirth : String;
 
   form = new FormGroup({
     emp_phnumber: new FormControl(this.tEmpid, [Validators.required, Validators.pattern('[6789][0-9]{9}')]),
     emp_name: new FormControl(this.tEmpname, [Validators.required, Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
     emp_salary: new FormControl(this.tEmpsalary, [Validators.required, Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
-    emp_email: new FormControl(this.tEmpage, [Validators.required, Validators.pattern('[0-1]{1}[0-9]{0,2}')])
+    emp_dob: new FormControl(this.tEmpage, [Validators.required, Validators.pattern('[0-1]{1}[0-9]{0,2}')])
   });
 
 
-  constructor(private empService: EmployeeService, private router: Router) { }
+  constructor(private empService: EmployeeService, private router: Router) { 
+    var currrentDate = new Date();
+    var currentYear = currrentDate.getFullYear();
+    var currentMonth = currrentDate.getMonth();
+    var currentDay = currrentDate.getDate();
+    var setmaxDate = new Date(currentYear -10, currentMonth, currentDay);
+    
+    var setminDate=new Date(currentYear - 90, currentMonth, currentDay);
+        this.datePickerConfig = Object.assign({},
+          {
+            containerClass: 'theme-dark-blue',
+            showWeekNumbers: false,
+            minDate : setminDate,
+            maxDate: setmaxDate,
+            dateInputFormat: 'YYYY-MM-DD'
+          });
+    
+
+  }
 
   ngOnInit() {
-    // this.employees=this.empService.employeeData;
     this.empService.getEmployees().subscribe(data => this.employees = data);
     for (let i = 0; i < this.employees.length; i++) {
       this.uSelected[i] = true;
     }
-
   }
 
   sort = (key) => {
@@ -56,22 +74,18 @@ export class ListEmpComponent implements OnInit {
     let eIndex = this.findEmployeeIndex(u_id);
     if (this.kSelected == u_id) {
       this.empService.empSelected = eIndex;
-      this.empService.updateEmployees(this.form.get("emp_phnumber").value, this.form.get("emp_name").value, this.form.get("emp_salary").value, this.form.get("emp_email").value);
+      let dateOfbirth = new Date(this.form.get('emp_dob').value).toLocaleDateString('zh-Hans-CN');
+      this.empService.updateEmployees(this.form.get("emp_phnumber").value, this.form.get("emp_name").value, this.form.get("emp_salary").value,dateOfbirth);
       this.kSelected = null;
     } else {
-
-
       this.kSelected = u_id;
-
       this.form = new FormGroup({
         emp_phnumber: new FormControl(this.employees[eIndex].employee_phnumber, [Validators.required, Validators.pattern('[0-9]+')]),
         emp_name: new FormControl(this.employees[eIndex].employee_name, [Validators.required, Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')]),
         emp_salary: new FormControl(this.employees[eIndex].employee_salary, [Validators.required, Validators.pattern('([1-9])+(?:-?\\d){3,}')]),
-        emp_email: new FormControl(this.employees[eIndex].employee_email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])
+        emp_dob: new FormControl(this.employees[eIndex].employee_dob, [Validators.required])
       });
-      //this.empService.updateEmployee(this.employees[index].id,this.employees[index].employee_name,this.employees[index].employee_salary,this.employees[index].employee_age);
     }
-    //console.log("onselect called"+index);
   };
 
   onCancel =() =>{
@@ -79,24 +93,17 @@ export class ListEmpComponent implements OnInit {
   };
 
 
-  onDelete = (u_id: number) => {
-    console.log("kselected"+this.index);
-    
+  onDelete = (u_id: number) => {    
     this.index = this.findEmployeeIndex(u_id);
     this.dSelected=this.employees[this.index].employee_name;
-    console.log("kselected"+this.index);
-
   };
+
   onDeleteaction = () => {
-    //console.log(this.index);
     this.empService.deleteEmployees(this.index);
   };
 
-
   findEmployeeIndex = (u_id: number) => {
-    //console.log(u_id);
     let i = this.employees.findIndex(x => x.u_id == u_id);
-    //console.log("index by"+i);
     return i;
   };
 

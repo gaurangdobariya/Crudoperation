@@ -20,51 +20,42 @@
 
             <th  (click)="sort('employee_name')">Employee Name
               <i class="fa fa-sort-down" *ngIf="key =='employee_name'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
-
-              <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_name'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
             </th>
+
             <th  (click)="sort('employee_phnumber')">Phone no
-              <!-- <i class="fa fa-sort"></i> -->
               <i class="fa fa-sort-down" *ngIf="key =='employee_phnumber'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
             </th>
+
             <th  (click)="sort('employee_salary')">Salary
-              <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_salary'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
               <i class="fa fa-sort-down" *ngIf="key =='employee_salary'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
-
             </th>
-            <th  (click)="sort('employee_email')">Email
-              <i class="fa fa-sort-down" *ngIf="key =='employee_email'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
 
-              <!-- <span class="glyphicon glyphicon-sort" *ngIf="key =='employee_age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span> -->
+            <th  (click)="sort('employee_dob')">Birth Date
+              <i class="fa fa-sort-down" *ngIf="key =='employee_dob'" [ngClass]="{'fas fa-sort-down':reverse,'fas fa-sort-up':!reverse}"></i>
             </th>
+
             <th  >&nbsp;Actions</th>
           </tr>
         </thead>
         <tbody>
 
 
-          <!-- <form [formGroup]="form"  class="form-group"> -->
-          <tr scope="col" *ngFor="let emp of employees  | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index"
+          <tr *ngFor="let emp of employees  | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 4, currentPage: p } ; let i = index"
             [attr.data-index]="i">
 
 
-            <td *ngIf="kSelected!=emp.u_id">{{emp.employee_name}}</td>
-            <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
-
-            <td *ngIf="kSelected==emp.u_id">
-
-              <div class="form-group">
+            <td>
+              <div *ngIf="kSelected!=emp.u_id">{{emp.employee_name}}</div>
+              <div *ngIf="kSelected==emp.u_id" class="form-group">
                 <input  formControlName="emp_name" id="emp_name" type="text" [value]="emp.employee_name" class="form-control"
                   name="emp_name" [ngClass]="{'redTurn':form.get('emp_name').invalid }">
                 <br>
               </div>
             </td>
-            <td *ngIf="kSelected!=emp.u_id">{{emp.employee_phnumber}}</td>
-            <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
 
-            <td *ngIf="kSelected==emp.u_id">
-
-              <div class="form-group">
+            <td>
+              <div *ngIf="kSelected!=emp.u_id">{{emp.employee_phnumber}}</div>
+              <div *ngIf="kSelected==emp.u_id" class="form-group">
                 <input  formControlName="emp_phnumber" id="emp_phnumber" type="text" [value]="emp.employee_phnumber"
                   class="form-control" name="emp_phnumber" [ngClass]="{'redTurn':form.get('emp_phnumber').invalid }">
                 <br>
@@ -72,58 +63,48 @@
             </td>
 
 
-            <td class="fcs" *ngIf="kSelected!=emp.u_id">{{emp.employee_salary}}</td>
-            <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+            <td> 
+              <div *ngIf="kSelected!=emp.u_id">{{emp.employee_salary}}</div>
 
-            <td *ngIf="kSelected==emp.u_id">
 
-              <div class="form-group">
+              <div *ngIf="kSelected==emp.u_id" class="form-group">
                 <input   formControlName="emp_salary" id="emp_salary" type="text" [value]="emp.employee_salary" class="form-control"
                   name="emp_salary" [ngClass]="{'redTurn':form.get('emp_salary').invalid }">
                 <br>
-              </div>
+            </div>
             </td>
 
-            <td *ngIf="kSelected!=emp.u_id">{{emp.employee_email}}</td>
-            <!-- <td *ngIf="uSelected[i]==false"><input [value]="emp.id" [(ngModel)]="emp.id" ></td>       -->
+            <td >
+              <div *ngIf="kSelected!=emp.u_id">{{emp.employee_dob}}</div>
 
-            <td *ngIf="kSelected==emp.u_id">
 
-              <div class="form-group">
-                <input  formControlName="emp_email" id="emp_email" type="text" [value]="emp.employee_email" class="form-control"
-                  name="emp_email" [ngClass]="{'redTurn':form.get('emp_email').invalid }">
-
+              <div *ngIf="kSelected==emp.u_id" class="form-group">
+                  <input formControlName="emp_dob" placeholder="Datepicker" triggers="dblclick:click" [bsConfig]="datePickerConfig" id="emp_dob" type="text" class="form-control w-50"
+                     name="emp_dob" placement="right" [ngClass]="{'redTurn':form.get('emp_dob').invalid }"  bsDatepicker>
                 <br>
               </div>
             </td>
-            <!-- </form>  -->
 
-            <!-- <td *ngIf="uSelected[i]==true">{{emp.employee_name}}</td>  
-                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_name" [(ngModel)]="emp.employee_name" ></td> 
-            <td *ngIf="uSelected[i]==true">{{emp.employee_salary}}</td>  
-                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_salary" [(ngModel)]="emp.employee_salary" ></td> 
-            <td *ngIf="uSelected[i]==true">{{emp.employee_age}}</td>  
-                 <td *ngIf="uSelected[i]==false"><input [value]="emp.employee_age" [(ngModel)]="emp.employee_age" ></td>  -->
-
+            <td> 
             <div>
-                <td> <button class="fclass" data-toggle="modal" data-target="#exampleModalCenter" [hidden]="kSelected==emp.u_id" [disabled]="kSelected==emp.u_id"
-                  type="button" (click)="onDelete(emp.u_id)"><i  [ngStyle]="{'color': emp.u_id == kSelected ? '#ff8080':  'brown' }" class="fa fa-trash fa-lg"></i></button> </td>
+               <button class="fclass" data-toggle="modal" data-target="#exampleModalCenter" [hidden]="kSelected==emp.u_id" [disabled]="kSelected==emp.u_id"
+                  type="button" (click)="onDelete(emp.u_id)"><i  [ngStyle]="{'color': emp.u_id == kSelected ? '#ff8080':  'brown' }" class="fa fa-trash fa-lg"></i></button> 
               
             
-              <td> <button class="fclass" [disabled]="(!form.valid) && kSelected==emp.u_id" type="submit"
+             <button class="fclass" [disabled]="(!form.valid) && kSelected==emp.u_id" type="submit"
                   type="submit" (click)="onUpdate(i,emp.u_id)"> 
                   <i   [ngClass]="{'fa fa-save fa-lg': emp.u_id == kSelected, 'fa fa-pencil fa-lg' : true }" [ngStyle]="{'color': emp.u_id == kSelected ? (!form.valid) ? '#ccffcc' : 'green' :  '#198dd4' }"  >  </i>               
-                </button> </td>
+                </button> 
                  
 
-                  <td *ngIf="kSelected==emp.u_id"> <button class="fclass"
+              <button [hidden]="kSelected!=emp.u_id" *ngIf="kSelected==emp.u_id" class="fclass"
 
                     type="button" (click)="onCancel()">                  
                           <i class="fa fa-times fa-lg"  style="color : red"></i>
-                  </button> </td>
+                  </button> 
   
-                </div>
-
+             </div>
+            </td>
 
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true">
@@ -149,7 +130,5 @@
         </tbody>
       </table>
     </form>
-    <!-- <button type="submit" style="float:right"  class="btn btn-primary" routerLink="/add-emp">ADD</button> -->
   </div>
-
-  <!-- <form [formGroup]="form"  class="form-group"> -->
+</div>

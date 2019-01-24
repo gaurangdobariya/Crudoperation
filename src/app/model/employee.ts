@@ -3,5 +3,5 @@ export class Employee {
     employee_phnumber: number;  
     employee_name: string;  
     employee_salary: number;  
-    employee_email: string;  
+    employee_dob: string;  
 }  
